@@ -50,3 +50,29 @@ class Solution {
        return A; 
     }
 }
+// 定义compare 在arrays.sort()中。 arrays.sort()是内置函数来对数据排序
+// 
+class Solution {
+    public int[] sortArrayByParity(int[] A) {
+        Integer[] B = new Integer[A.length];
+        for (int t = 0; t < A.length; ++t)
+            B[t] = A[t];
+        myCompare cmp = new myCompare();
+        Arrays.sort(B,cmp);
+        for(int i = 0; i<A.length; i++){
+            A[i] = B[i];
+        }
+        return A;
+    }
+}
+class myCompare implements Comparator<Integer>{
+    public int compare(Integer a, Integer b){
+        if(a%2<b%2){
+            return -1;
+        }
+        else if (a%2>b%2){
+            return 1;
+        }
+        else return 0;
+    }
+}
