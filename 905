@@ -1,0 +1,23 @@
+
+class Solution {
+    public int[] sortArrayByParity(int[] A) {
+        ArrayList<Integer> B = new ArrayList<Integer>();
+        ArrayList<Integer> temp = new ArrayList<Integer>();
+        int[] result = new int[A.length];
+        for(int i = 0; i<A.length; i++){
+            if(A[i]%2==0){
+                B.add(A[i]);
+            }
+            else{
+                temp.add(A[i]);
+            }
+        }
+        for(Integer j:temp){
+            B.add(j);
+        }
+        for(int k = 0; k<B.size();k++){
+            result[k] = B.get(k);
+        }
+        return result;
+    }
+}
