@@ -1,0 +1,29 @@
+// 先将数组0变成1，1变成0，然后交换顺序
+class Solution {
+    public int[][] flipAndInvertImage(int[][] A) {
+        for(int i = 0; i<A.length; i++){
+            for(int j = 0; j<A[i].length; j++){
+                if(A[i][j]==0){
+                    A[i][j] = 1;
+                }
+                else{
+                    A[i][j] = 0;
+                }
+            }
+        }
+        for(int i = 0 ; i<A.length; i++){
+            int a = 0;
+            int b = A[i].length - 1;
+            while(a<b) {
+                int temp = A[i][a];
+                A[i][a] = A[i][b];
+                A[i][b] = temp;
+                a++;
+                b--;
+            }
+            
+        }
+        return A;
+    }
+    
+}
