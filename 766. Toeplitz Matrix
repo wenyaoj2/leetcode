@@ -1,0 +1,31 @@
+//判断数组中每一个元素是否等于右下的元素（i+1）（j+1）
+class Solution {
+    public boolean isToeplitzMatrix(int[][] matrix) {
+        for(int i = 0;i<matrix.length-1;i++){
+            for(int j = 0; j< matrix[0].length-1; j++){
+                if(matrix[i][j]!=matrix[i+1][j+1]){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+}
+//方法二： 使用map要想对角线相等i-j的值应该都相等， 因此使用map存储每一个i-j的值用containsKey判断是否含有这个key若没有put进去，若有判断value是否
+//与matrix[i][j]相等
+class Solution {
+    public boolean isToeplitzMatrix(int[][] matrix) {
+        Map<Integer, Integer> group = new HashMap();
+        for(int i = 0;i<matrix.length; i++){
+            for(int j = 0; j<matrix[0].length; j++){
+                if(!group.containsKey(i-j)){
+                    group.put((i-j),matrix[i][j]);
+                }
+                else if(group.containsKey(i-j)&&group.get(i-j)!=matrix[i][j]){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+}
