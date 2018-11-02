@@ -1,0 +1,94 @@
+//使用arraylist存储原数组中的元素
+class Solution {
+    public int[][] matrixReshape(int[][] nums, int r, int c) {
+        int[][] newnums = new int[r][c];
+        if(r*c!=nums.length*nums[0].length){
+            return nums;
+        }
+        else{
+            
+            ArrayList<Integer> temp = new ArrayList();
+            for(int i = 0 ; i< nums.length; i++){
+                for(int j = 0; j<nums[0].length; j++){
+                    temp.add(nums[i][j]);
+                }
+            }
+            for(int i = 0; i<r;i++){
+                for(int j= 0 ; j<c; j++){
+                    newnums[i][j] = temp.get(i*c+j);
+                }
+            }
+        }
+        return newnums;
+    }
+}
+//由于程序需要将原有数组中的元素按顺序取出并存到新的数组中，因此选用queue作为数据结构
+class Solution {
+    public int[][] matrixReshape(int[][] nums, int r, int c) {
+        int[][] newnums = new int[r][c];
+        Queue<Integer> queue = new LinkedList();
+        if(r*c!=nums.length*nums[0].length){
+            return nums;
+        }
+        else{
+            for(int i = 0 ; i< nums.length; i++){
+                for(int j = 0; j<nums[0].length; j++){
+                    queue.add(nums[i][j]);
+                }
+            }
+            for(int i = 0; i<r;i++){
+                for(int j= 0 ; j<c; j++){
+                    newnums[i][j] = queue.remove();
+                }
+            }
+        }
+        return newnums;
+    }
+}
+//不借助新的数据结构来存储原有元素
+//直接将原有元素存储到新的数组中，当col到达新的数据的c时使row+1 将col清零继续添加元素
+class Solution {
+    public int[][] matrixReshape(int[][] nums, int r, int c) {
+        int[][] newnums = new int[r][c];
+        if(r*c!=nums.length*nums[0].length){
+            return nums;
+        }
+        else{
+            
+            int row = 0;
+            int col  = 0; 
+            while(row<r){
+                for(int i = 0 ; i< nums.length; i++){
+                    for(int j = 0; j<nums[0].length; j++){
+                        newnums[row][col] = nums[i][j];
+                        col++;
+                        if(col == c){
+                            row++;
+                            col =0;
+                        }
+                    }
+                }
+            }
+            
+            
+        }
+        return newnums;
+    }
+}
+//使用数学方法计算得出新的数组行列与原数组关系
+//总元素的个数除以数组一行的元素个数等于该元素处于的行数，余数是该元素处于列数
+public class Solution {
+    public int[][] matrixReshape(int[][] nums, int r, int c) {
+        int[][] res = new int[r][c];
+        if (nums.length == 0 || r * c != nums.length * nums[0].length)
+            return nums;
+        int count = 0;
+        for (int i = 0; i < nums.length; i++) {
+            for (int j = 0; j < nums[0].length; j++) {
+                res[count / c][count % c] = nums[i][j];
+                count++;
+            }
+        }
+        return res;
+    }
+}
