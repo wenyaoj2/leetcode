@@ -1,0 +1,54 @@
+class Solution {
+    public boolean isMonotonic(int[] A) {
+        for(int i = 0; i<A.length-1; i++){
+            if(A[0]==A[A.length-1]){
+                if(A[i]!=A[i+1]){
+                    return false;
+                }
+            }
+            else if(A[0]<A[A.length-1]){
+                if(A[i]>A[i+1]){
+                    return false;
+                }
+            }
+            else if(A[0]>A[A.length-1]){
+                if(A[i]<A[i+1]){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+}
+//方法二，一次判断，如果数组中出现A[i]>A[i+1] 则该数组必不是单调递增， 同理若A[i]<A[i+1] 该数组也必不是单调递减的 所以最后判断俩个系数得出单调性
+class Solution {
+    public boolean isMonotonic(int[] A) {
+        boolean increasing = true;
+        boolean decreasing = true;
+        for(int i = 0; i<A.length-1;i++){
+            if(A[i]>A[i+1]){
+                increasing = false;
+            }
+            else if(A[i]<A[i+1]){
+                decreasing = false;
+            }
+        }
+        return increasing||decreasing;
+    }
+}
+//方法三， 使用compare方法来判断数组俩元素的大小若A<B 则compare返回-1 A=B 返回0 A>B 返回1， 再判断返回的数字来判断数组单调性
+class Solution {
+    public boolean isMonotonic(int[] A) {
+        int store = 0;
+        for(int i=0; i<A.length-1;i++){
+            int c = Integer.compare(A[i],A[i+1]);
+            if(c!=0){
+                if(c!=store&&store!=0){
+                    return false;
+                }
+                store = c;
+            }
+        }
+        return true;
+    }
+}
