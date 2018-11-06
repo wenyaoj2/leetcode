@@ -1,0 +1,20 @@
+方法一设置一个指针， 0前进一个，1前进两个，判断是否可以落在最后一位商
+class Solution {
+    public boolean isOneBitCharacter(int[] bits){
+        int  i = 0;
+        while(i<bits.length-1){
+            i = i+bits[i]+1;
+        }
+        return i==bits.length-1;
+    }
+}
+//方法二：倒数第二位如果是0，则一定满足条件，若是1则必须连续偶数个1
+class Solution {
+    public boolean isOneBitCharacter(int[] bits){
+        int i = bits.length-2;
+        while(i>=0&&bits[i]>0){
+            i--;
+        }
+        return (bits.length-2-i)%2==0;
+    }
+}
