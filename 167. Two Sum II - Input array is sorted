@@ -1,0 +1,22 @@
+从两边向中间滑动
+class Solution {
+    public int[] twoSum(int[] numbers, int target) {
+        int[] result = new int[2];
+        int low = 0;
+        int high = numbers.length-1;
+        while(low<high){
+            if(numbers[low]+numbers[high]<target){
+                low++;
+            }
+            else if(numbers[low]+numbers[high]>target){
+                high--;
+            }
+            else{
+                result[0] = low+1;
+                result[1] = high+1;
+                break;
+            }
+        }
+        return result;
+    }
+}
