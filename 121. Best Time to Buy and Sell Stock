@@ -1,0 +1,20 @@
+找到一个最低点计算所有大于他的值与他的差，如果遇到新的最低点则替换重复步骤
+
+class Solution {
+    public int maxProfit(int[] prices) {
+        int startpoint = Integer.MAX_VALUE;
+        int start = 0;
+        int max = 0;
+        for(int i = 0;i<prices.length;i++){
+            if(startpoint>prices[i]){
+                startpoint = prices[i];
+                start = i;
+            }
+            else if(prices[i]>startpoint&&i>start){
+                max = Math.max(max,prices[i]-startpoint);
+            }
+
+        }
+        return max;
+    }
+}
