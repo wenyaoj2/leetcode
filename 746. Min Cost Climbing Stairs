@@ -1,0 +1,17 @@
+动态规划
+每一步等于当前步骤的消耗加上下一步或下两步的消耗
+从最后一位开始计算消耗，最后一位等于本身
+f2，f1一次向前移动使f2等于f1，f1等于f0
+直到最后比较f1，f2大小
+class Solution {
+    public int minCostClimbingStairs(int[] cost) {
+        int f2 = 0;
+        int f1 = 0;
+        for(int i = cost.length-1; i>=0;i--){
+            int f0 = cost[i]+Math.min(f2,f1); 
+            f2 = f1;
+            f1 = f0;
+        }
+        return Math.min(f1,f2);
+    }
+}
