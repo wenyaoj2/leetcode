@@ -1,0 +1,24 @@
+动态规划
+每一行的开头结尾都是1
+中间的数字调用上一行的数字作和
+class Solution {
+    public List<List<Integer>> generate(int numRows) {
+        List<List<Integer>> ans = new ArrayList<List<Integer>>();
+        if(numRows==0){
+            return ans;
+        }
+        ans.add(new ArrayList<Integer>());
+        ans.get(0).add(1);
+        for(int i = 1; i<numRows; i++){
+            ArrayList<Integer> row = new ArrayList();
+            List<Integer> Prerow = ans.get(i-1);
+            row.add(1);
+            for(int j = 0; j<i-1;j++){
+                row.add(Prerow.get(j)+Prerow.get(j+1));
+            }
+            row.add(1);
+            ans.add(row);
+        }
+        return ans;
+    }
+}
