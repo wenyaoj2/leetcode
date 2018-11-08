@@ -1,0 +1,27 @@
+遇到不相等的则将nums[i]变成该值
+public int removeElement(int[] nums, int val) {
+    int i = 0;
+    for (int j = 0; j < nums.length; j++) {
+        if (nums[j] != val) {
+            nums[i] = nums[j];
+            i++;
+        }
+    }
+    return i;
+}
+
+方法二
+class Solution {
+    public int removeElement(int[] nums, int val) {
+        int length = 0;
+        for(int i = nums.length-1; i>=0; i--){
+            if(nums[i]==val){
+                length++;
+                for(int j = i; j<nums.length-1;j++){
+                    nums[j] = nums[j+1];
+                }
+            }
+        }
+        return nums.length-length;
+    }
+}
