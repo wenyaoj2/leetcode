@@ -1,0 +1,18 @@
+如果有一位不是9就直接加1输出
+如果是9则变为0，继续执行前面的，如果全是9则需要定义新的数组，并在前面加一个1
+class Solution {
+    public int[] plusOne(int[] digits) {
+        int[] newdigit = new int[digits.length+1];
+        for(int i = digits.length-1; i>=0; i--){
+            if(digits[i]<9){
+                digits[i]++;
+                return digits;
+            }
+            digits[i] = 0;
+            newdigit[i] = 0;
+        }
+        newdigit[0] = 1;
+        newdigit[newdigit.length-1] = 0;
+        return newdigit;
+    }
+}
