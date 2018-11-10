@@ -1,0 +1,22 @@
+class Solution {
+    public List<String> subdomainVisits(String[] cpdomains) {
+        Map<String,Integer> ans = new HashMap();
+        for(String domain : cpdomains){
+            String[] sub = domain.split("\\s+");
+            String[] subdomain = sub[1].split("\\.+");
+            int num = Integer.valueOf(sub[0]);
+            String cur = "";
+            for(int i = subdomain.length-1; i>=0; i--){
+
+                cur = subdomain[i]+(i<subdomain.length-1?".":"")+cur;
+
+                
+                ans.put(cur,ans.getOrDefault(cur,0)+num);
+            }
+        }
+        List<String> last = new ArrayList();
+            for (String dom: ans.keySet())
+            last.add("" + ans.get(dom) + " " + dom);
+        return last;
+    }
+}
