@@ -1,0 +1,11 @@
+class Solution {
+    public int distributeCandies(int[] candies) {
+        int number = candies.length/2;
+        HashSet<Integer> candy = new HashSet();
+        for(int i = 0; i<candies.length; i++){
+            candy.add(candies[i]);
+        }
+        return Math.min(number,candy.size());
+        
+    }
+}
