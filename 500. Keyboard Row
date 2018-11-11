@@ -1,0 +1,29 @@
+class Solution {
+    public String[] findWords(String[] words) {
+        Map<Character,Integer> abc = new HashMap();
+        boolean flag = true;
+        List<String> ans = new ArrayList();
+        String[] line = {"qwertyuiop","asdfghjkl","zxcvbnm"};
+        for(int i = 0; i<line.length; i++){
+            for(int j = 0; j<line[i].length(); j++){
+                abc.put(line[i].charAt(j),i);
+            }
+        }
+        for(String i : words){
+            flag = true;
+            int lines = abc.get(i.toLowerCase().charAt(0));
+            for(int j = 0; j<i.length();j++){
+                if(abc.get(i.toLowerCase().charAt(j))!=lines){
+                    flag = false;
+                }
+                
+            }
+            if(flag == true){
+                ans.add(i);
+            }
+        }
+        String[] last = (String[]) ans.toArray(new String[ans.size()]);
+        
+        return last;
+    }
+}
