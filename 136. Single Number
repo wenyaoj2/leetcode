@@ -1,0 +1,15 @@
+class Solution {
+    public int singleNumber(int[] nums) {
+        int last = 0;
+        Map<Integer,Integer> ans = new HashMap();
+        for(int i:nums){
+            ans.put(i,ans.getOrDefault(i,0)+1);
+        }
+        for(int i : ans.keySet()){
+            if(ans.get(i)==1){
+                last = i;
+            }
+        }
+        return last;
+    }
+}
