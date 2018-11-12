@@ -1,0 +1,26 @@
+每一次更新map的时候要清空map
+class Solution {
+    public int numberOfBoomerangs(int[][] points) {
+        Map<Double,Integer> eq = new HashMap();
+        int count = 0;
+        for(int i = 0;i<points.length;i++){
+            for(int j = 0;j<points.length;j++){
+                if(i==j){
+                    continue;
+                }
+                double result = calculate(points[i],points[j]);
+                eq.put(result,eq.getOrDefault(result,0)+1);
+            }
+            for(Double k:eq.keySet()){
+            count = count+eq.get(k)*(eq.get(k)-1);
+            }
+            eq.clear();
+        }
+        
+        return count;
+    }
+    
+    public double calculate(int[] a, int[] b){
+        return Math.sqrt(Math.pow((a[0]-b[0]),2)+Math.pow((a[1]-b[1]),2));
+    }
+}
