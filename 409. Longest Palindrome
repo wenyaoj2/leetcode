@@ -1,0 +1,18 @@
+class Solution {
+    public int longestPalindrome(String s) {
+        Map<Character, Integer> ans = new HashMap();
+        int count = 0;
+        boolean e = false;
+        for(int i =0; i<s.length(); i++){
+            ans.put(s.charAt(i),ans.getOrDefault(s.charAt(i),0)+1);
+        }
+        for(int value:ans.values()){
+            count = count+value/2*2;
+            if(count%2==0&&value%2==1){
+                count++;
+            }
+        }
+
+        return count;
+    }
+}
