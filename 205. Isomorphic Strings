@@ -1,0 +1,44 @@
+class Solution {
+    public boolean isIsomorphic(String s, String t) {
+        Map<Character,Character> ans = new HashMap();
+        Map<Character,Character> ans1 = new HashMap();
+        for(int i = 0; i<s.length();i++){
+            if(ans.containsKey(s.charAt(i))){
+                if(ans.get(s.charAt(i))!=t.charAt(i)){
+                    return false;
+                }
+            }
+            else{
+                ans.put(s.charAt(i),t.charAt(i));
+            }
+        }
+        for(int i = 0; i<t.length();i++){
+            if(ans1.containsKey(t.charAt(i))){
+                if(ans1.get(t.charAt(i))!=s.charAt(i)){
+                    return false;
+                }
+            }
+            else{
+                ans1.put(t.charAt(i),s.charAt(i));
+            }
+        }
+        return true;
+    }
+}
+
+更快速的方法
+在数组中char类型的字符被转化成asc码。
+相同的字符asc码也相同，因此当同一字符被再次调用时，数组选择同一数值，且asc一共128位
+public class Solution {
+    public boolean isIsomorphic(String s1, String s2) {
+        int[] ans = new int[256];
+        for(int i = 0; i<s1.length();i++){
+            if(ans[s1.charAt(i)]!=ans[s2.charAt(i)+128]){
+                return false;
+            }
+            ans[s1.charAt(i)] = i+1;
+            ans[s2.charAt(i)+128] = i+1;
+        }
+        return true;
+    }
+}
