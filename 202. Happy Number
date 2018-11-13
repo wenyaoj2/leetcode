@@ -1,0 +1,28 @@
+核心思路时如果相同的数字存入set则将会进入循环
+所以此时应结束循环
+square应在循环开始之前清0，以保证每次都重新计算
+class Solution {
+    public boolean isHappy(int n) {
+        HashSet<Integer> ans = new HashSet();
+        int b,square = 0;
+       
+        while(ans.add(n)){
+            square = 0;
+            while(n>0){
+                b  = n%10;
+                square = square+b*b;
+                n = n/10;
+            }
+            
+            if(square==1){
+                return true;
+            }
+            else{
+                n = square;
+            }
+            
+        }
+        return false;
+        
+    }
+}
