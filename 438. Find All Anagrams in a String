@@ -1,0 +1,36 @@
+针对子集问题使用滑窗来解决
+
+class Solution {
+    public List<Integer> findAnagrams(String s, String p) {
+        Map<Character,Integer> find  = new HashMap();
+        List<Integer> ans = new ArrayList();
+        for(int i = 0; i<p.length();i++){
+            find.put(p.charAt(i),find.getOrDefault(p.charAt(i),0)+1);
+        }
+        int begin = 0;
+        int end = 0;
+        int counter = find.size();
+        while(end<s.length()){
+            if(find.containsKey(s.charAt(end))){
+                find.put(s.charAt(end),find.get(s.charAt(end))-1);
+                if(find.get(s.charAt(end))==0){
+                    counter--;
+                }
+            }
+            end++;
+            while(counter==0){
+                if(find.containsKey(s.charAt(begin))){
+                    if((end-begin)==p.length()){
+                        ans.add(begin);
+                    }
+                    find.put(s.charAt(begin),find.get(s.charAt(begin))+1);
+                    if(find.get(s.charAt(begin))>0){
+                        counter++;
+                    }
+                }
+                begin++;
+            }
+        }
+        return ans;
+    }
+}
