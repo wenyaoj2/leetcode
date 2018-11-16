@@ -1,0 +1,35 @@
+用数组来存储listnode
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public ListNode middleNode(ListNode head) {
+        ListNode[] ans = new ListNode[100];
+        int i = 1;
+        ans[0] = head;
+        while(head.next!=null){
+            ans[i] = head.next;
+            i++;
+            head = head.next;
+        }
+        return ans[i/2];
+    }
+}
+方法二，用两个指针当fast指完时slow指向一半
+class Solution {
+    public ListNode middleNode(ListNode head) {
+        ListNode fast = head;
+        ListNode slow = head;
+        while(fast!=null&&fast.next!=null){
+            fast = fast.next.next;
+            
+            slow = slow.next;
+        }
+        return slow;
+    }
+}
