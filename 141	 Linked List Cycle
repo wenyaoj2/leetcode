@@ -1,0 +1,59 @@
+public class Solution {
+    public boolean hasCycle(ListNode head) {
+        if(head==null){
+            return false;
+        }
+        ListNode cur = head;
+        ListNode pre = head;
+        int flag1 = 0;
+        int flag2 = 0;
+        boolean check = false;
+        while(cur.next!=null){
+            cur = cur.next;
+            flag1++;
+            flag2 = 0;
+            pre = head;
+            while(pre!=cur){
+                pre = pre.next;
+                flag2++;
+            }
+            if(flag1!=flag2){
+                check = true;
+                break;
+            }
+        }
+        return check;
+    }
+}
+方法二 如果形成cycle证明有node重复出现
+public class Solution {
+  public boolean hasCycle(ListNode head) {
+    Map<ListNode,Integer> nodesSeen = new HashMap<>();
+    while (head != null) {
+        nodesSeen.put(head,nodesSeen.getOrDefault(head,0)+1);
+        if (nodesSeen.get(head)!=1) {
+            return true;
+        }
+        head = head.next;
+    }
+    return false;
+}
+}
+方法三 
+public class Solution {
+  public boolean hasCycle(ListNode head) {
+      if(head==null||head.next==null){
+          return false;
+      }
+      ListNode fast = head.next;
+      ListNode slow = head;
+      while(slow!=fast){
+          if(fast==null||fast.next==null){
+              return false;
+          }
+          fast = fast.next.next;
+          slow = slow.next;
+      }
+      return true;
+}
+}
