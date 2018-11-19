@@ -1,0 +1,19 @@
+将两个list遍历之后，再交换两者再遍历一边，返回一个node
+如果没有交集，则第二遍遍历必会使cur = null
+
+public class Solution {
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        if(headA==null||headB==null){
+            return null;
+        }
+        ListNode curA = headA;
+        ListNode curB = headB;
+        ListNode head = null;
+        while(curA!=curB){
+           curA = curA==null?headB:curA.next;
+            curB = curB==null?headA:curB.next;
+            
+        }
+        return curA;
+    }
+}
