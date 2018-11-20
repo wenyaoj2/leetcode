@@ -1,0 +1,17 @@
+class Solution {
+    public int reverse(int x) {
+        String i = String.valueOf(x);
+        String ans = "";
+        for(int j = i.length()-1;j>=0;j--){
+            ans = ans + i.charAt(j);
+        }
+        if(ans.charAt(ans.length()-1)=='-'){
+            ans = "-"+ans.substring(0,ans.length()-1);
+        }
+        try{
+            return Integer.parseInt(ans);
+        } catch(Exception e){
+            return 0;
+        }
+    }
+}
