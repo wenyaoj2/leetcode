@@ -1,0 +1,44 @@
+class Solution {
+    public boolean backspaceCompare(String S, String T) {
+        int StringS = S.length()-1;
+        int StringT = T.length()-1;
+        int skipS=0,skipT=0;
+        while(StringS>=0||StringT>=0){
+            while(StringS>=0){
+                if(S.charAt(StringS)=='#'){
+                    skipS++;
+                    StringS--;
+                }
+                else if(skipS>0){
+                    skipS--;
+                    StringS--;
+                }
+                else{
+                    break;
+                }
+            }    
+            while(StringT>=0){
+                    if(T.charAt(StringT)=='#'){
+                        skipT++;
+                        StringT--;
+                    }
+                    else if(skipT>0){
+                        skipT--;
+                        StringT--;
+                    }
+                    else{
+                        break;
+                    }
+                }
+            if(StringS>=0&&StringT>=0&&S.charAt(StringS)!=T.charAt(StringT)){
+                return false;
+            }
+            if((StringS>=0&&StringT<0)||(StringS<0&&StringT>=0)){
+                return false;
+            }
+            StringS--;
+            StringT--;        
+        }
+        return true;
+    }
+}
