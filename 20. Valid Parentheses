@@ -1,0 +1,24 @@
+class Solution {
+    Map<Character,Character> ans;
+    public Solution(){
+        this.ans = new HashMap<Character,Character>();
+        ans.put(')','(');
+        ans.put(']','[');
+        ans.put('}','{');
+    }
+    public boolean isValid(String s) {
+        Stack<Character> stack = new Stack();
+        for(int i = 0; i<s.length();i++){
+            if(!this.ans.containsKey(s.charAt(i))){
+                stack.push(s.charAt(i));
+            }
+            else{
+                char top = stack.empty()?'!':stack.pop();
+                if(top!=ans.get(s.charAt(i))){
+                    return false;
+                }
+            }
+        }
+        return stack.isEmpty();
+    }
+}
