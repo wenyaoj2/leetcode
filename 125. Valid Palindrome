@@ -1,0 +1,14 @@
+class Solution {
+    public boolean isPalindrome(String s) {
+        StringBuilder a = new StringBuilder("");
+        StringBuilder b = new StringBuilder("");
+        for(char i:s.toCharArray()){
+            if(Character.isLetter(i)||Character.isDigit(i))
+                a.append(Character.toLowerCase(i));
+        }
+        for(int j = a.length()-1;j>=0;j--){
+            b.append(a.charAt(j));
+        }
+        return a.toString().equals(b.toString());
+    }
+}
