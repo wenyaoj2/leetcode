@@ -1,0 +1,65 @@
+class MyQueue {
+    Stack<Integer> queue;
+    Stack<Integer> old;
+    /** Initialize your data structure here. */
+    public MyQueue() {
+        queue = new Stack();
+    }
+    
+    /** Push element x to the back of queue. */
+    public void push(int x) {
+        queue.push(x);
+    }
+    
+    /** Removes the element from in front of queue and returns that element. */
+    public int pop() {
+        old = queue;
+         queue = new Stack<Integer>();
+        System.out.println(old.peek());
+        while(!old.empty()){
+            queue.push(old.pop());
+        }
+        System.out.println(queue.peek());
+        int top = queue.pop();
+        old = queue;
+        queue = new Stack<Integer>();
+        while(!old.empty()){
+            queue.push(old.pop());
+        }
+        return top;
+    }
+    
+    /** Get the front element. */
+    public int peek() {
+        old = queue;
+        
+        queue = new Stack<Integer>();
+        while(!old.empty()){
+            queue.push(old.pop());
+        }
+        System.out.println(queue.peek());
+        int top = queue.peek();
+        old = queue;
+        queue = new Stack<Integer>();
+        while(!old.empty()){
+            queue.push(old.pop());
+        }
+        return top;
+    }
+    
+    /** Returns whether the queue is empty. */
+    public boolean empty() {
+        if(queue.empty()){
+            return true;
+        }
+        return false;
+    }
+}
+/**
+ * Your MyQueue object will be instantiated and called as such:
+ * MyQueue obj = new MyQueue();
+ * obj.push(x);
+ * int param_2 = obj.pop();
+ * int param_3 = obj.peek();
+ * boolean param_4 = obj.empty();
+ */
