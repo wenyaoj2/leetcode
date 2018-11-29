@@ -1,0 +1,25 @@
+将数组中元素依次存入stack中，同时比较大小
+若新元素大于顶部元素则取出顶部元素并将两者存入map中
+该value即为该元素右侧第一个大值
+剩余元素继续比较
+知道最后取出stack剩余元素并赋予-1
+class Solution {
+    public int[] nextGreaterElement(int[] nums1, int[] nums2) {
+        int[] ans = new int[nums1.length];
+        Stack<Integer> a = new Stack();
+        HashMap<Integer,Integer> b = new HashMap();
+        for(int i = 0;i<nums2.length;i++){
+            while(!a.empty()&&a.peek()<nums2[i]){
+                b.put(a.pop(),nums2[i]);
+            }
+            a.push(nums2[i]);
+        }
+        while(!a.empty()){
+            b.put(a.pop(),-1);
+        }
+        for(int i = 0;i<nums1.length;i++){
+            ans[i] = b.get(nums1[i]);
+        }
+        return ans;
+    }
+}
