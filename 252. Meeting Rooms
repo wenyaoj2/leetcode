@@ -1,0 +1,40 @@
+使用hashmap与sort解决问题
+class Solution {
+    public boolean canAttendMeetings(Interval[] intervals) {
+        HashMap<Integer,Integer> time = new HashMap();
+        for(Interval i:intervals){
+            if(time.containsKey(i.start)){
+                return false;
+            }
+            time.put(i.start,i.end);
+        }
+        List<Integer> st = new ArrayList(time.keySet());
+        Collections.sort(st,new Comparator<Integer>(){
+            public int compare(Integer i, Integer j){
+                return i<j?-1:1;
+            }
+        });
+        for(int i = 0; i<st.size()-1;i++){
+            if(st.get(i+1)<time.get(st.get(i))){
+                return false;
+            }
+        }
+        return true;
+    }
+}
+直接利用sort来解决问题
+class Solution {
+    public boolean canAttendMeetings(Interval[] intervals) {
+        Arrays.sort(intervals,new Comparator<Interval>(){
+                public int compare(Interval l1, Interval l2){
+                    return l1.start-l2.start;
+                }
+        });
+        for(int i = 0; i<intervals.length-1;i++){
+            if(intervals[i+1].start<intervals[i].end){
+                return false;
+            }
+        }
+        return true;
+    }
+}
