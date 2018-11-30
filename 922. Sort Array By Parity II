@@ -1,0 +1,22 @@
+先走一遍在所有偶数位添加偶数
+再走一遍在所有奇数为添加奇数
+class Solution {
+    public int[] sortArrayByParityII(int[] A) {
+        int[] ans = new int[A.length];
+        int t = 0;
+        for(int x:A){
+            if(x%2==0){
+                ans[t] = x;
+                t = t+2;
+            }
+        }
+        t = 1;
+        for(int x:A){
+            if(x%2==1){
+                ans[t] = x;
+                t = t+2;
+            }
+        }
+        return ans;
+    }
+}
