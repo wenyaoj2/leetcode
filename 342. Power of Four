@@ -1,0 +1,6 @@
+0x55555555是16进制，化为2进制每个奇数位是1
+class Solution {
+    public boolean isPowerOfFour(int num) {
+        return (num>0)&&((num&0x55555555)==num)&&((num&(num-1))==0);
+    }
+}
