@@ -78,12 +78,12 @@ class LRUCache {
     }
     
     public ListNode removeTail(){
-        ListNode temp = tail.prev;
-        temp.prev.next = tail;
-        tail.prev = temp.prev;
-        temp.next = null;
-        temp.prev = null;
-        return temp;
+        ListNode node = tail.prev;
+        node.prev.next = tail;
+        tail.prev = node.prev;
+        node.next = null;
+        node.prev = null;
+        return node;
     }
 }
 
