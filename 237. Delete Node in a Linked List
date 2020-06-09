@@ -1,9 +1,0 @@
-因为这个是单链表所以没有prev node
-使用新的思路就是让node的val等于下一个node的val
-再让已经重复的node next换成node next next
-class Solution {
-    public void deleteNode(ListNode node) {
-        node.val = node.next.val;
-        node.next = node.next.next;
-    }
-}
