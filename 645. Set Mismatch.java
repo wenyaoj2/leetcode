@@ -1,4 +1,6 @@
-class Solution {
+import java.util.HashSet;
+
+class FindErrorNums {
     public int[] findErrorNums(int[] nums) {
         HashSet<Integer> ans = new HashSet();
         int[] last = new int[2];
