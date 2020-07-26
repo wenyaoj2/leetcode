@@ -13,7 +13,7 @@
  *     }
  * }
  */
-class Solution {
+class SortedArrayToBST {
     public class TreeNode {
         int val;
         TreeNode left;
