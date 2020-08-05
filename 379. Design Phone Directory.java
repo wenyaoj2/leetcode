@@ -1,14 +1,13 @@
 import java.util.*;
-
 class PhoneDirectory {
 
     /** Initialize your data structure here
         @param maxNumbers - The maximum numbers that can be stored in the phone directory. */
     HashSet<Integer> used = new HashSet();
-    HashSet<Integer> pool = new HashSet();
+    Queue<Integer> pool = new LinkedList();
     public PhoneDirectory(int maxNumbers) {
         for(int i = 0; i < maxNumbers; i++) {
-            pool.add(i);
+            pool.offer(i);
         }
     }
     
@@ -18,22 +17,22 @@ class PhoneDirectory {
         if(pool.isEmpty()) {
             return -1;
         }
-        for(int num : pool) {
-            pool.remove(num);
-            used.add(num);
-            return num;
-        }
-        return -1;
+        int num = pool.poll();
+        used.add(num);
+        return num;
     }
     
     /** Check if a number is available or not. */
     public boolean check(int number) {
-        return pool.contains(number);
+        return !used.contains(number);
     }
     
     /** Recycle or release a number. */
     public void release(int number) {
-        pool.add(number);
+        if(!used.contains(number)) {
+            return;
+        }
+        pool.offer(number);
         used.remove(number);
     }
 }
