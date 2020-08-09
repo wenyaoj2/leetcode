@@ -221,6 +221,57 @@ public class Main {
         return cnt;
     }
 
+    public static String decode(String s) {
+        Stack<Character> stack = new Stack();
+        int index = 0;
+        String res = "";
+        while(index < s.length()) {
+            char c = s.charAt(index);
+            if(c != ')') {
+                stack.add(c);
+            }
+            else {
+                int num = 0;
+                String cur = "";
+                while(stack.peek() != '(') {
+                    cur = stack.pop() + cur;
+                }
+                stack.pop();
+                while(s.charAt(index) != '}') {
+                    if(Character.isDigit(s.charAt(index))) {
+                        num += num * 10 + s.charAt(index) - '0';
+                    }
+                    index++;
+                }
+                StringBuilder sb = new StringBuilder();
+                while(num > 0) {
+                    sb.append(cur);
+                    num--;
+                }
+                for(char each : sb.toString().toCharArray()) {
+                    stack.add(each);
+                }
+            }
+            index++;
+        }
+        for(char c : stack) {
+            res += c;
+        }
+        return res;
+    }
+    public static int decodeWays(String s) {
+        int[] dp = new int[s.length() + 1];
+        dp[0] = 1;
+        dp[1] = 1;
+        for(int i = 2; i <= s.length(); i++) {
+            dp[i] += dp[i - 1];
+            int num = (s.charAt(i - 2) - '0') * 10 + (s.charAt(i - 1) - '0');
+            if(num >= 10 && num < 26) {
+                dp[i] += dp[i - 2];
+            }
+        }
+        return dp[s.length()];
+    }
     public static void main(String[] args) {
         //Q1
         //Testcase 1
@@ -311,7 +362,7 @@ public class Main {
 //            System.out.println();
 //        }
         //Q9 Share Purchase
-        String s = "AAABC";
-        System.out.println(sharePurchases(s));
+        String s = "100200300";
+        System.out.println(decodeWays(s));
     }
 }
