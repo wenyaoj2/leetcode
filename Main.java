@@ -1,3 +1,4 @@
+import java.text.DecimalFormat;
 import java.util.*;
 
 
@@ -362,7 +363,8 @@ public class Main {
 //            System.out.println();
 //        }
         //Q9 Share Purchase
-        String s = "100200300";
-        System.out.println(decodeWays(s));
+        double s = 10.0200500;
+        String ss = String.format("%.4f", s);
+        System.out.println(ss);
     }
 }
