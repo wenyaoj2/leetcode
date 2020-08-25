@@ -8,7 +8,7 @@
  * }
  */
 
-class Solution {
+class LowestCommonAncestor {
     public class TreeNode {
         int val;
         TreeNode left;
